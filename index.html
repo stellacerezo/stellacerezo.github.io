@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stella Cerezo — Actrice</title>
+<meta name="description" content="Stella Cerezo, actrice. Cinéma, musique, mannequinat et publicité.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800;900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;1,6..96,500&family=Anton&family=Tenor+Sans&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cerise:#7A1027;      /* rouge cerise profond */
+    --cerise-dark:#4A0816;
+    --petale:#F7E6E8;      /* fond rose pâle */
+    --fleur:#E8A1AE;       /* fleur de cerisier */
+    --ink:#22080F;         /* texte */
+    --white:#FFFDFD;
+    --display:"Big Shoulders Display", Impact, sans-serif;
+    --body:"Instrument Sans", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--petale);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.55}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--cerise);outline-offset:3px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:20;background:rgba(247,230,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(122,16,39,.15)}
+  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+  .logo{font-family:'Bodoni Moda',Didot,serif;font-weight:700;font-size:1.375rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--cerise)}
+  .nav ul{display:flex;gap:clamp(.9rem,2.6vw,2.2rem);list-style:none}
+  .nav ul a{text-decoration:none;font-family:'Tenor Sans',var(--body);font-weight:400;font-size:.8125rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem 0 .2rem;border-bottom:1px solid transparent}
+  .nav ul a:hover,.nav ul a[aria-current="true"]{border-color:var(--cerise);color:var(--cerise)}
+  @media (max-width:640px){.nav ul li.hide-sm{display:none}}
+
+  /* HERO */
+  .hero{min-height:calc(100vh - 64px);display:grid;grid-template-columns:1.1fr .9fr;align-items:end;gap:2rem;padding-block:clamp(2rem,6vw,4rem)}
+  .hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.82;font-size:clamp(5rem,17vw,15rem);color:var(--cerise);letter-spacing:-.01em}
+  .hero h1 span{display:block}
+  .hero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--cerise)}
+  .hero .intro{max-width:34ch;margin-top:1.5rem;font-size:1.2rem}
+  .hero .portrait{aspect-ratio:3/4;border-radius:200px 200px 6px 6px;overflow:hidden}
+  .disciplines{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+  .disciplines a{font-family:'Bodoni Moda',Didot,serif;font-style:italic;font-weight:500;font-size:1.08rem;line-height:1.2;text-decoration:none;border:1.5px solid var(--cerise);color:var(--cerise);border-radius:999px;padding:.4rem 1rem}
+  .disciplines a:hover{background:var(--cerise);color:var(--white)}
+  @media (max-width:860px){.hero{grid-template-columns:1fr;min-height:auto}.hero .portrait{max-width:380px}}
+
+  /* Placeholder photo */
+  .ph{background:
+      radial-gradient(circle at 30% 25%, var(--fleur) 0 18%, transparent 19%),
+      radial-gradient(circle at 70% 60%, rgba(232,161,174,.55) 0 12%, transparent 13%),
+      linear-gradient(160deg,#D98A99,var(--cerise));
+    display:flex;align-items:flex-end;padding:1rem;color:var(--white);font-size:.85rem;height:100%;width:100%}
+
+  /* SECTIONS */
+  section.block{padding-block:clamp(4rem,9vw,7rem)}
+  .head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  h2{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6rem);line-height:.9;text-transform:uppercase}
+  .head p{max-width:42ch}
+  .dark{background:var(--cerise);color:var(--petale)}
+  .dark h2{color:var(--white)}
+  .darker{background:var(--cerise-dark);color:var(--petale)}
+
+  /* CINEMA — filmographie */
+  .reel{aspect-ratio:16/9;margin-bottom:.75rem;border-radius:6px;overflow:hidden;position:relative}
+  .reel button{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;border:none;background:var(--white);color:var(--cerise);font-size:1.6rem;cursor:pointer}
+  .filmo{list-style:none;border-top:1px solid rgba(247,230,232,.3)}
+  .filmo li{display:grid;grid-template-columns:5rem 1fr 1fr 1fr;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(247,230,232,.3);align-items:baseline}
+  .filmo .y{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--fleur)}
+  .filmo .t{font-weight:600;font-size:1.15rem;color:var(--white)}
+  .filmo .r{font-style:italic}
+  @media (max-width:700px){.filmo li{grid-template-columns:4rem 1fr}.filmo .r,.filmo .d{grid-column:2}}
+
+  /* MUSIQUE */
+  .music{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+  .cover{aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 14px var(--ink),0 0 0 15px var(--fleur)}
+  .tracks{list-style:none;counter-reset:t}
+  .tracks li{counter-increment:t;display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(34,8,15,.15)}
+  .tracks li::before{content:counter(t);font-family:var(--display);font-weight:800;font-size:1.4rem;color:var(--cerise);width:1.5rem}
+  .tracks .tt{flex:1;font-weight:600}
+  .tracks .tt small{display:block;font-weight:400;opacity:.7}
+  .play{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--cerise);background:transparent;color:var(--cerise);cursor:pointer;font-size:1rem}
+  .play[aria-pressed="true"]{background:var(--cerise);color:var(--white)}
+  .platforms{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+  .platforms a{font-weight:600;text-decoration:underline;text-underline-offset:4px}
+  @media (max-width:760px){.music{grid-template-columns:1fr}.cover{max-width:300px}}
+
+  /* MODELE — book */
+  .book{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:.75rem}
+  .book figure{border-radius:6px;overflow:hidden}
+  .book .tall{grid-row:span 2}
+  .book .wide{grid-column:span 2}
+  .mensu{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:2.5rem}
+  .mensu dt{font-size:.9rem;opacity:.75}
+  .mensu dd{font-family:var(--display);font-weight:800;font-size:2rem;color:var(--white)}
+  @media (max-width:760px){.book{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}}
+
+  /* PUB */
+  .ads{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,3vw,2rem)}
+  .ad .thumb{aspect-ratio:9/12;border-radius:6px;overflow:hidden;margin-bottom:.9rem}
+  .ad h3{font-family:var(--display);font-weight:800;font-size:1.8rem;text-transform:uppercase;line-height:1}
+  .ad p{opacity:.8}
+  @media (max-width:760px){.ads{grid-template-columns:1fr 1fr}}
+  @media (max-width:480px){.ads{grid-template-columns:1fr}}
+
+  /* CONTACT */
+  .contact{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem}
+  .contact h2{color:var(--white)}
+  .contact dl{display:grid;gap:1.5rem}
+  .contact dt{opacity:.7;font-size:.95rem}
+  .contact dd{font-size:1.3rem;font-weight:600;color:var(--white)}
+  footer{padding:2rem 0;font-size:.9rem;opacity:.7}
+  @media (max-width:760px){.contact{grid-template-columns:1fr}}
+
+  .hero{align-items:center;grid-template-columns:minmax(0,1fr) minmax(260px,420px)}
+  .hero h1{font-size:clamp(4rem,11.5vw,10.5rem)}
+  .hero .portrait{width:100%;justify-self:end}
+  .list li{display:block!important}
+  .list li span{display:block;font-size:.9rem}
+  @media (max-width:860px){.hero{grid-template-columns:1fr}.hero .portrait{justify-self:start;max-width:380px}}
+  @media (max-width:640px){.logo{font-size:1.05rem;white-space:nowrap}.nav ul{gap:.7rem}.nav ul a{font-size:.68rem;letter-spacing:.14em}}
+  /* Hero plein cadre : photo en fond, fond gris clair prolongé autour */
+  .bighero{position:relative;min-height:calc(100vh - 64px);background:#EFEFEF;overflow:hidden;display:flex;align-items:center}
+  .bighero .bg{position:absolute;right:0;bottom:0;height:100%;width:auto;max-width:none;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 22%);mask-image:linear-gradient(to right,transparent 0,#000 22%)}
+  .bighero-text{position:relative;z-index:1;width:100%;padding-block:3rem}
+  .bighero h1{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.95;font-size:clamp(3.4rem,18vw,10rem);color:var(--cerise)}
+  .bighero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--cerise)}
+  .bighero h1 span{display:block}
+  .bighero .intro{max-width:30ch;margin-top:1.5rem;font-size:1.2rem}
+  @media (max-width:860px){
+    .bighero{min-height:auto;flex-direction:column;align-items:stretch}
+    .bighero .bg{position:relative;width:100%;height:auto;max-width:100%;
+      -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,#000 70%,transparent 100%)}
+    .bighero-text{margin-top:-6rem;padding-top:0}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .bighero h1 span{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+    .bighero h1 span:nth-child(2){animation-delay:.12s}
+  }
+  .book{grid-template-columns:repeat(3,1fr)}
+  .pleinpied{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem}
+  .pleinpied figure{aspect-ratio:2/3;border-radius:6px;overflow:hidden}
+  .pleinpied img{width:100%;height:100%;object-fit:cover}
+  .mensu{margin-top:0}
+  @media (max-width:900px){.pleinpied{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:480px){.pleinpied{grid-template-columns:repeat(2,1fr)}.book{grid-template-columns:repeat(3,1fr);grid-auto-rows:130px}}
+  /* Musique */
+  .music{grid-template-columns:minmax(220px,340px) 1fr;align-items:center}
+  .canvas{aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#0d2c3d}
+  .canvas img{width:100%;height:100%;object-fit:cover;display:block}
+  .single-head{display:flex;gap:1.25rem;align-items:center}
+  .cover-sq{width:140px;height:140px;border-radius:6px;object-fit:cover}
+  .kind{font-size:.9rem;opacity:.7}
+  .song{font-family:var(--display);font-weight:900;font-size:clamp(3rem,7vw,5.5rem);line-height:.9;text-transform:uppercase;color:var(--cerise)}
+  .player{display:flex;align-items:center;gap:1rem;margin-top:2rem;padding:1rem 0;border-top:1px solid rgba(34,8,15,.15);border-bottom:1px solid rgba(34,8,15,.15)}
+  .player .play{width:56px;height:56px;flex:none;font-size:1.1rem}
+  .player input{flex:1;accent-color:var(--cerise)}
+  .player span{font-variant-numeric:tabular-nums;font-size:.95rem;white-space:nowrap}
+  .clip-title{color:var(--cerise)!important;margin-top:4rem!important}
+  .clip{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#000}
+  .clip img,.clip iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
+  .clip button{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;border:none;background:var(--white);color:var(--cerise);font-size:1.6rem;cursor:pointer}
+  @media (max-width:760px){.music{grid-template-columns:1fr}.canvas{max-width:260px}.cover-sq{width:96px;height:96px}}
+  .campaign h3{margin-bottom:1.25rem;font-family:var(--display);font-weight:800;font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;line-height:1;color:var(--cerise)}
+  .campaign>p{opacity:.75;margin:.25rem 0 1.25rem}
+  .campaign figure{aspect-ratio:4/5;border-radius:6px;overflow:hidden}
+  .campaign img{width:100%;height:100%;object-fit:cover}
+  .langs{display:flex;gap:.55rem;margin-left:1.2rem;align-items:center}
+  .langs button{width:20px;height:20px;padding:0;border:none;border-radius:50%;overflow:hidden;cursor:pointer;opacity:.5;background:none;box-shadow:0 0 0 1px rgba(34,8,15,.18);transition:opacity .2s}
+  .langs button svg{width:100%;height:100%;display:block}
+  .langs button[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 2px var(--petale),0 0 0 3px var(--cerise)}
+  .langs button:hover{opacity:1}
+  header.nav nav{margin-left:auto}
+  @media (max-width:640px){header.nav .wrap{flex-wrap:wrap;height:auto;padding-block:.6rem;row-gap:.4rem}header.nav nav{order:3;width:100%;margin-left:0}.langs{margin-left:auto}}
+  /* Book : noir et blanc, couleur au survol / clic */
+  .book2{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem}
+  .book2 figure{position:relative;aspect-ratio:2/3;border-radius:6px;overflow:hidden;cursor:pointer}
+  .book2 figure.lead{grid-row:span 2;aspect-ratio:auto}
+  .book2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,filter .45s ease}
+  .book2 .bw{opacity:1}
+  .book2 .gray{filter:grayscale(1)}
+  .book2 figure:hover .bw,.book2 figure.on .bw,.book2 figure:focus-visible .bw{opacity:0}
+  .book2 figure:hover .gray,.book2 figure.on .gray,.book2 figure:focus-visible .gray{filter:none}
+  @media (max-width:760px){.book2{grid-template-columns:repeat(2,1fr)}.book2 figure.lead,.book2 figure.lead2{grid-column:auto;grid-row:auto;aspect-ratio:2/3}}
+  @media (prefers-reduced-motion:reduce){.book2 img{transition:none}}
+  /* Hero : en paysage la photo occupe la moitié de l'écran */
+  @media (min-width:861px) and (min-aspect-ratio:1/1){
+    .bighero .bg{width:50%;height:100%;object-fit:cover;object-position:center 30%;
+      -webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%);mask-image:linear-gradient(to right,transparent 0,#000 12%)}
+    .bighero-text .intro{max-width:26ch}
+    .bighero h1{font-size:clamp(4rem,10vw,10.5rem)}
+  }
+  /* Shooting : rangées justifiées, photos entières */
+  .shoot{display:grid;gap:.75rem}
+  .srow{display:flex;gap:.75rem}
+  .srow{align-items:flex-start}
+  .srow figure{position:relative;flex:var(--r) 1 0;aspect-ratio:var(--r);border-radius:6px;overflow:hidden;min-width:0;min-height:0;height:auto}
+  .srow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  @media (max-width:760px){.srow.mini{width:100%}.srow:not(.keep):not(.mini){flex-wrap:wrap}.srow:not(.keep):not(.mini) figure{flex:1 1 calc(50% - .375rem);aspect-ratio:4/5}.srow:not(.keep):not(.mini) img{object-position:center 20%}.srow.keep{flex-wrap:wrap}.srow.keep figure:first-child{flex:1 1 100%}.srow.keep figure{flex:var(--r) 1 0;aspect-ratio:var(--r)}}
+  .reel img,.reel iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
+  .reel-link{margin-bottom:3rem}
+  .reel-link a{color:var(--petale);text-underline-offset:4px}
+  .reel .playlink,.clip .playlink{position:absolute;inset:0;display:grid;place-items:center;text-decoration:none;font-size:0}
+  .reel .playlink::after,.clip .playlink::after{content:"▶";display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:var(--white);color:var(--cerise);font-size:1.6rem;transition:transform .2s}
+  .reel .playlink:hover::after,.clip .playlink:hover::after{transform:scale(1.08)}
+  .book img{width:100%;height:100%;object-fit:cover}
+  .book .tall{grid-row:span 2}
+  .book{grid-auto-rows:200px}
+  h3.sub{font-family:var(--display);font-weight:800;font-size:1.6rem;text-transform:uppercase;color:var(--fleur);margin:2.5rem 0 .75rem}
+  .parcours{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:1rem}
+  .list{list-style:none}
+  .list li{padding:.6rem 0;border-bottom:1px solid rgba(247,230,232,.25);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  .list b{color:var(--white)}
+  .list span{opacity:.75}
+  @media (max-width:760px){.parcours{grid-template-columns:1fr}.book{grid-auto-rows:170px}}
+  .todo{background:rgba(232,161,174,.35);border-radius:3px;padding:0 .25em}
+  @media (prefers-reduced-motion:no-preference){
+    .hero h1 span{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+    .hero h1 span:nth-child(2){animation-delay:.12s}
+    @keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  }
+  @media (min-width:761px){
+    .book2{grid-auto-flow:dense}
+    .book2 figure.lead{grid-column:1;grid-row:1/span 2}
+    .book2 figure.lead.lead2{grid-column:5;grid-row:1/span 2}
+    .book2 figure.lead2 img{object-position:62% 40%}
+  }
+  @media (min-width:1280px){
+    .book2{--e:4.5rem;--m:calc((100% - 4*.75rem - 2*var(--e))/5);width:calc(100% + 2*var(--e));margin-inline:calc(-1*var(--e));
+      grid-template-columns:calc(var(--m) + var(--e)) repeat(3,var(--m)) calc(var(--m) + var(--e))}
+  }
+</style>
+<meta property="og:title" content="Stella Cerezo — Actrice">
+<meta property="og:description" content="Actrice, chanteuse, compositrice et modèle.">
+<meta property="og:image" content="img/portrait-hd.jpg">
+<meta property="og:type" content="profile">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Stella Cerezo", "jobTitle": ["Actrice", "Chanteuse", "Compositrice", "Modèle"], "image": "img/portrait-hd.jpg", "sameAs": ["https://www.instagram.com/stella.cerezo/", "https://youtu.be/19kX55jwmLE"]}</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">Stella Cerezo</a>
+    <nav aria-label="Rubriques">
+      <ul>
+        <li><a href="#cinema">Cinéma</a></li>
+        <li><a href="#musique">Musique</a></li>
+        <li><a href="#modele">Modèle</a></li>
+        <li><a href="#pub">Pub</a></li>
+        <li class="hide-sm"><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="langs" role="group" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-label="Français" aria-pressed="true"><svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 3 2"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ED2939"/></svg></button>
+      <button type="button" data-lang="es" aria-label="Español" aria-pressed="false"><svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg></button>
+      <button type="button" data-lang="en" aria-label="English" aria-pressed="false"><svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 60 30"><clipPath id="uk"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#uk)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="bighero">
+    <img class="bg" src="img/portrait-hd.jpg" alt="Portrait de Stella Cerezo en noir et blanc">
+    <div class="wrap bighero-text">
+      <h1><span>Stella</span><span class="outline">Cerezo</span></h1>
+      <p class="intro">Actrice, chanteuse, compositrice et modèle. Joue en français, espagnol et anglais.</p>
+      <div class="disciplines" aria-label="Rubriques">
+        <a href="#cinema">Cinéma</a><a href="#musique">Musique</a><a href="#modele">Modèle</a><a href="#pub">Pub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CINEMA -->
+  <section id="cinema" class="block dark">
+    <div class="wrap">
+      <div class="head">
+        <h2>Cinéma</h2>
+        <p>Longs, courts métrages et séries. Bande démo ci-dessous.</p>
+      </div>
+      <div class="reel" id="reel">
+        <div class="ph"></div>
+        <img src="img/reel.jpg" alt="Bande démo de Stella Cerezo">
+        <a class="playlink" id="reelbtn" href="https://youtu.be/ouZcCIUB2L0" target="_blank" rel="noopener" aria-label="Lire la bande démo sur YouTube">▶</a>
+      </div>
+      <p class="reel-link"><a href="https://youtu.be/ouZcCIUB2L0">Voir la bande démo sur YouTube</a></p>
+      <h3 class="sub">Cinéma</h3>
+      <ol class="filmo" reversed>
+        <li><span class="y">2026</span><span class="t">Sacrée Ginette</span><span class="r">Rôle principal</span><span class="d">Série · sitcom</span></li>
+        <li><span class="y">2026</span><span class="t">Chères lectrices</span><span class="r">Comédie satirique</span><span class="d">De Louis Vignes · Studio Café Film</span></li>
+        <li><span class="y">2025</span><span class="t">L'Art de la révolution</span><span class="r">Rôle principal</span><span class="d">De Noé Deza Dja · Production France TV</span></li>
+        <li><span class="y">2024</span><span class="t">À travers le hublot</span><span class="r">Court métrage</span><span class="d">D'Arezki Abdelaziz · Diffusé sur France TV</span></li>
+      </ol>
+      <h3 class="sub">Théâtre</h3>
+      <ol class="filmo">
+        <li><span class="y">2026</span><span class="t">Roméo Juliette Materials</span><span class="r">Rôles de Juliette &amp; Samson</span><span class="d">Mise en scène Karl Phillipe Kokou</span></li>
+      </ol>
+
+      <div class="parcours">
+        <div>
+          <h3 class="sub">Formation</h3>
+          <ul class="list">
+            <li><b>CRR de Créteil</b> — Conservatoire à rayonnement régional<span>2025 – 2026</span></li>
+            <li><b>P.A.T. Studio</b> — coaching Anissa Allali<span>2025 – 2026</span></li>
+            <li><b>La Fabrik Origin</b> — coaching Leslie Tompson<span>2023 – 2025</span></li>
+            <li><b>BUAP, Puebla (Mexique)</b> — cours de théâtre<span>2023</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Aptitudes</h3>
+          <ul class="list">
+            <li>Piano — 8 ans de conservatoire, composition</li>
+            <li>Chant</li>
+            <li>Tissu aérien (notions)</li>
+            <li>Équitation — Galop 2</li>
+            <li>Danse hip-hop, modern-jazz et contemporain (notions)</li>
+            <li>Permis B</li>
+          </ul>
+          <h3 class="sub">Langues</h3>
+          <p>Français (maternel) · espagnol (courant) · anglais (C1) · vietnamien (notions)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUSIQUE -->
+  <section id="musique" class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>Musique</h2>
+        <p>Chanteuse, pianiste et compositrice.</p>
+      </div>
+      <div class="music">
+        <figure class="canvas">
+          <img id="canvas" src="img/canvas.webp" alt="Visuel animé du single Otra Vez" width="360" height="640">
+        </figure>
+        <div class="single">
+          <div class="single-head">
+            <img class="cover-sq" src="img/cover.jpg" alt="Pochette du single Otra Vez" width="900" height="900">
+            <div>
+              <p class="kind">Single · extrait</p>
+              <h3 class="song">Otra Vez</h3>
+              <p>Stella Cerezo</p>
+            </div>
+          </div>
+          <div class="player">
+            <audio id="audio" src="img/otra-vez-extrait.mp3" preload="metadata"></audio>
+            <button class="play" id="playbtn" type="button" aria-label="Écouter un extrait de Otra Vez">▶</button>
+            <input id="seek" type="range" min="0" max="30" value="0" step="0.1" aria-label="Position dans le morceau">
+            <span id="time">0:00 / 0:30</span>
+          </div>
+          <div class="platforms">
+            <a href="https://youtu.be/19kX55jwmLE">Voir le clip sur YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub clip-title">Clip officiel</h3>
+      <div class="clip" id="clip">
+        <img src="img/miniature.jpg" alt="Image du clip Otra Vez : Stella Cerezo sur une plage au pied d'une falaise" width="1280" height="720">
+        <a class="playlink" id="clipbtn" href="https://youtu.be/19kX55jwmLE" target="_blank" rel="noopener" aria-label="Lire le clip Otra Vez sur YouTube">▶</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELE -->
+  <section id="modele" class="block darker">
+    <div class="wrap">
+      <div class="head">
+        <h2 style="color:var(--white)">Modèle</h2>
+        <p>Book photo.</p>
+      </div>
+      <div class="book2">
+        <figure class="lead" tabindex="0"><img class="col gray" src="img/couleur.jpg" alt="Stella Cerezo, portrait de face, débardeur noir" loading="lazy"></figure>
+        <figure tabindex="0"><img class="col" src="img/b1c.jpg" alt="Stella Cerezo, tête inclinée, gilet en jean" loading="lazy"><img class="bw" src="img/b1bw.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+        <figure tabindex="0"><img class="col gray" src="img/b2c.jpg" alt="Stella Cerezo, mains dans les cheveux, gilet en jean" loading="lazy"></figure>
+        <figure tabindex="0"><img class="col" src="img/b8c.jpg" alt="Stella Cerezo souriante, débardeur noir, collier de perles" loading="lazy"><img class="bw" src="img/b8bw.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+        <figure tabindex="0"><img class="col" src="img/b4c.jpg" alt="Stella Cerezo, souriante, accoudée" loading="lazy"><img class="bw" src="img/b4bw.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+        <figure tabindex="0"><img class="col" src="img/b5c.jpg" alt="Stella Cerezo, tête posée sur la main, débardeur blanc" loading="lazy"><img class="bw" src="img/b5bw.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+        <figure tabindex="0"><img class="col" src="img/b6c.jpg" alt="Stella Cerezo, regard par-dessus l'épaule" loading="lazy"><img class="bw" src="img/b6bw.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+        <figure class="lead lead2" tabindex="0"><img class="col" src="img/b7c.jpg" alt="Stella Cerezo, tête inclinée, gilet en jean bleu" loading="lazy"><img class="bw" src="img/b7bw.jpg" alt="" aria-hidden="true" loading="lazy"></figure>
+      </div>
+      <h3 class="sub">Plein pied</h3>
+      <div class="pleinpied">
+        <figure><img src="img/pp6.jpg" alt="Stella Cerezo en plein pied, de profil droit" loading="lazy"></figure>
+        <figure><img src="img/pp3.jpg" alt="Stella Cerezo en plein pied, de trois quarts" loading="lazy"></figure>
+        <figure><img src="img/pp1.jpg" alt="Stella Cerezo en plein pied, de face, mains dans les poches" loading="lazy"></figure>
+        <figure><img src="img/pp4.jpg" alt="Stella Cerezo en plein pied, de trois quarts, autre côté" loading="lazy"></figure>
+        <figure><img src="img/pp5.jpg" alt="Stella Cerezo en plein pied, de profil gauche" loading="lazy"></figure>
+      </div>
+      <h3 class="sub">Mensurations</h3>
+      <dl class="mensu">
+        <div><dt>Taille</dt><dd>167 cm</dd></div>
+        <div><dt>Poitrine</dt><dd>90 cm</dd></div>
+        <div><dt>Tour de taille</dt><dd>73 cm</dd></div>
+        <div><dt>Hanches</dt><dd>87 cm</dd></div>
+        <div><dt>Bassin</dt><dd>97 cm</dd></div>
+        <div><dt>Pointure</dt><dd>39/40</dd></div>
+        <div><dt>Cheveux</dt><dd>Bruns</dd></div>
+        <div><dt>Yeux</dt><dd>Marron foncé</dd></div>
+      </dl>
+      <h3 class="sub">Shooting</h3>
+      <div class="shoot">
+        <div class="srow">
+          <figure style="--r:0.562"><img src="img/shoot-video.webp" alt="Stella Cerezo — Extrait vidéo du shooting : allongée sur un lit, menton dans la main" loading="lazy"></figure>
+          <figure style="--r:.95"><img src="img/s6.jpg" style="object-position:center 30%" alt="Stella Cerezo — Portrait dans un manteau de fourrure" loading="lazy"></figure>
+          <figure style="--r:0.668"><img src="img/s1.jpg" alt="Stella Cerezo — Assise au sol, tons sépia" loading="lazy"></figure>
+          <figure style="--r:1.503"><img src="img/s7.jpg" alt="Stella Cerezo — Allongée sur un lit, noir et blanc" loading="lazy"></figure>
+        </div>
+        <div class="srow">
+          <figure style="--r:0.708"><img src="img/s2.jpg" alt="Stella Cerezo — Profil sur fond de ciel" loading="lazy"></figure>
+          <figure style="--r:0.715"><img src="img/s15.jpg" alt="Stella Cerezo — Souriante, lumière de fin de journée" loading="lazy"></figure>
+          <figure style="--r:0.668"><img src="img/s8.jpg" alt="Stella Cerezo — De dos sur fond jaune" loading="lazy"></figure>
+          <figure style="--r:0.668"><img src="img/s9.jpg" alt="Stella Cerezo — Vue plongeante sur fond jaune, vinyles au sol" loading="lazy"></figure>
+          <figure style="--r:0.711"><img src="img/s10.jpg" alt="Stella Cerezo — Jambes levées, santiags, fond jaune" loading="lazy"></figure>
+          <figure style="--r:0.666"><img src="img/s4.jpg" alt="Stella Cerezo — Robe noire, main dans les cheveux" loading="lazy"></figure>
+        </div>
+        <div class="srow keep">
+          <figure style="--r:1.439"><img src="img/s11.jpg" alt="Stella Cerezo — Souriante, yeux fermés, lumière bleue" loading="lazy"></figure>
+          <figure style="--r:1.575"><img src="img/s12.jpg" alt="Stella Cerezo — Allongée, lumière bleue" loading="lazy"></figure>
+          <figure style="--r:1.272"><img src="img/s13.jpg" alt="Stella Cerezo — Allongée, lumière violette" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUB -->
+  <section id="pub" class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>Pub</h2>
+        <p>Campagnes publicitaires.</p>
+      </div>
+      <article class="campaign">
+        <h3>Edone Paris</h3>
+        <div class="ads">
+          <figure><img src="img/edone1.jpg" alt="Campagne Edone Paris : assise en tailleur sur un lit bleu, boîte de mouchoirs en main" loading="lazy"></figure>
+          <figure><img src="img/edone2.jpg" alt="Campagne Edone Paris : serviette sur la tête, croquant un carré de chocolat" loading="lazy"></figure>
+          <figure><img src="img/edone3.jpg" alt="Campagne Edone Paris : devant le miroir de la salle de bain, dentifrice en main" loading="lazy"></figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="block dark">
+    <div class="wrap contact">
+      <div>
+        <h2>Contact</h2>
+        <p style="margin-top:1rem;max-width:36ch">Castings, collaborations, demandes presse : contact direct par email ou Instagram.</p>
+      </div>
+      <dl>
+        <div><dt>Email</dt><dd><a href="mailto:stellavyx@gmail.com">stellavyx@gmail.com</a></dd></div>
+        <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/stella.cerezo/">@stella.cerezo</a></dd></div>
+        <div><dt>Basée en</dt><dd>Banlieue parisienne (94) · véhiculée</dd></div>
+      </dl>
+    </div>
+    <div class="wrap"><footer>© 2026 Stella Cerezo</footer></div>
+  </section>
+</main>
+
+<script>
+  // Traduction FR / ES / EN
+  const I18N={"Cinéma": {"es": "Cine", "en": "Film"}, "Musique": {"es": "Música", "en": "Music"}, "Modèle": {"es": "Modelo", "en": "Modelling"}, "Pub": {"es": "Publicidad", "en": "Ads"}, "Contact": {"es": "Contacto", "en": "Contact"}, "Actrice, chanteuse, compositrice et modèle. Joue en français, espagnol et anglais.": {"es": "Actriz, cantante, compositora y modelo. Actúa en francés, español e inglés.", "en": "Actress, singer, songwriter and model. Acts in French, Spanish and English."}, "Longs, courts métrages et séries. Bande démo ci-dessous.": {"es": "Largometrajes, cortometrajes y series. Videobook a continuación.", "en": "Feature films, shorts and series. Showreel below."}, "Rôle principal": {"es": "Papel principal", "en": "Lead role"}, "Série · sitcom": {"es": "Serie · sitcom", "en": "Series · sitcom"}, "Comédie satirique": {"es": "Comedia satírica", "en": "Satirical comedy"}, "De Louis Vignes · Studio Café Film": {"es": "De Louis Vignes · Studio Café Film", "en": "By Louis Vignes · Studio Café Film"}, "De Noé Deza Dja · Production France TV": {"es": "De Noé Deza Dja · Producción France TV", "en": "By Noé Deza Dja · Produced by France TV"}, "Court métrage": {"es": "Cortometraje", "en": "Short film"}, "D'Arezki Abdelaziz · Diffusé sur France TV": {"es": "De Arezki Abdelaziz · Emitido en France TV", "en": "By Arezki Abdelaziz · Aired on France TV"}, "Théâtre": {"es": "Teatro", "en": "Theatre"}, "Rôles de Juliette & Samson": {"es": "Papeles de Juliette y Samson", "en": "Roles: Juliette & Samson"}, "Mise en scène Karl Phillipe Kokou": {"es": "Dirección: Karl Phillipe Kokou", "en": "Directed by Karl Phillipe Kokou"}, "Formation": {"es": "Formación", "en": "Training"}, "— Conservatoire à rayonnement régional": {"es": "— Conservatorio regional", "en": "— Regional conservatory"}, "— coaching Anissa Allali": {"es": "— coaching con Anissa Allali", "en": "— coaching with Anissa Allali"}, "— coaching Leslie Tompson": {"es": "— coaching con Leslie Tompson", "en": "— coaching with Leslie Tompson"}, "BUAP, Puebla (Mexique)": {"es": "BUAP, Puebla (México)", "en": "BUAP, Puebla (Mexico)"}, "— cours de théâtre": {"es": "— clases de teatro", "en": "— acting classes"}, "Aptitudes": {"es": "Habilidades", "en": "Skills"}, "Piano — 8 ans de conservatoire, composition": {"es": "Piano — 8 años de conservatorio, composición", "en": "Piano — 8 years at the conservatory, composition"}, "Chant": {"es": "Canto", "en": "Singing"}, "Danse hip-hop, modern-jazz et contemporain (notions)": {"es": "Danza hip-hop, modern jazz y contemporánea (nociones)", "en": "Dance: hip-hop, modern jazz and contemporary (basics)"}, "Tissu aérien (notions)": {"es": "Telas aéreas (nociones)", "en": "Aerial silks (basics)"}, "Équitation — Galop 2": {"es": "Equitación — Galop 2", "en": "Horse riding — Galop 2"}, "Permis B": {"es": "Carné de conducir B", "en": "Driving licence (B)"}, "Langues": {"es": "Idiomas", "en": "Languages"}, "Français (maternel) · espagnol (courant) · anglais (C1) · vietnamien (notions)": {"es": "Francés (nativo) · español (fluido) · inglés (C1) · vietnamita (nociones)", "en": "French (native) · Spanish (fluent) · English (C1) · Vietnamese (basics)"}, "Chanteuse, pianiste et compositrice.": {"es": "Cantante, pianista y compositora.", "en": "Singer, pianist and songwriter."}, "Single · extrait": {"es": "Single · fragmento", "en": "Single · preview"}, "Voir le clip sur YouTube": {"es": "Ver el videoclip en YouTube", "en": "Watch the video on YouTube"}, "Clip officiel": {"es": "Videoclip oficial", "en": "Official music video"}, "Book photo.": {"es": "Book de fotos.", "en": "Portfolio."}, "Plein pied": {"es": "Cuerpo entero", "en": "Full length"}, "Mensurations": {"es": "Medidas", "en": "Measurements"}, "Taille": {"es": "Estatura", "en": "Height"}, "Poitrine": {"es": "Pecho", "en": "Bust"}, "Tour de taille": {"es": "Cintura", "en": "Waist"}, "Hanches": {"es": "Caderas", "en": "Hips"}, "Bassin": {"es": "Cadera baja", "en": "Low hips"}, "Pointure": {"es": "Talla de calzado (EU)", "en": "Shoe size (EU)"}, "Cheveux": {"es": "Cabello", "en": "Hair"}, "Yeux": {"es": "Ojos", "en": "Eyes"}, "Bruns": {"es": "Castaño", "en": "Brown"}, "Marron foncé": {"es": "Marrón oscuro", "en": "Dark brown"}, "Castings, collaborations, demandes presse : contact direct par email ou Instagram.": {"es": "Castings, colaboraciones, prensa: contacto directo por email o Instagram.", "en": "Castings, collaborations, press: direct contact by email or Instagram."}, "Basée en": {"es": "Ubicación", "en": "Based in"}, "Banlieue parisienne (94) · véhiculée": {"es": "Afueras de París (94) · con vehículo propio", "en": "Paris area (94) · has a car"}, "Shooting": {"es": "Sesiones de fotos", "en": "Photo shoots"}, "Voir la bande démo sur YouTube": {"es": "Ver el videobook en YouTube", "en": "Watch the showreel on YouTube"}, "Campagnes publicitaires.": {"es": "Campañas publicitarias.", "en": "Advertising campaigns."}};
+  const nodes=[];(function walk(n){for(const c of n.childNodes){if(c.nodeType===3){const k=c.nodeValue.trim();if(I18N[k])nodes.push([c,c.nodeValue,k]);}else if(c.nodeType===1&&!/SCRIPT|STYLE/.test(c.tagName))walk(c);}})(document.body);
+  function setLang(l){
+    nodes.forEach(([n,orig,k])=>{n.nodeValue=l==='fr'?orig:orig.replace(k,I18N[k][l]);});
+    document.documentElement.lang=l;
+    document.querySelectorAll('.langs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  try{const s=localStorage.getItem('lang');if(s&&s!=='fr')setLang(s)}catch(e){}
+  // Book : clic pour basculer couleur / noir et blanc (tactile)
+  document.querySelectorAll('.book2 figure').forEach(f=>{f.addEventListener('click',()=>f.classList.toggle('on'));f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('on')}})});
+  // Lecteur audio Otra Vez
+  const au=document.getElementById('audio'),pb=document.getElementById('playbtn'),sk=document.getElementById('seek'),tm=document.getElementById('time');
+  // Si l'audio est intégré en data URI, on le convertit en blob (mieux supporté)
+  (()=>{const d=au.getAttribute('src')||'';if(!d.startsWith('data:'))return;try{
+    const b=atob(d.split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
+    au.src=URL.createObjectURL(new Blob([u],{type:'audio/mpeg'}));}catch(e){}})();
+  const f=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+  pb.addEventListener('click',()=>{au.paused?au.play():au.pause()});
+  au.addEventListener('play',()=>{pb.textContent='❚❚';pb.setAttribute('aria-label','Mettre en pause')});
+  au.addEventListener('pause',()=>{pb.textContent='▶';pb.setAttribute('aria-label','Écouter Otra Vez')});
+  au.addEventListener('loadedmetadata',()=>{sk.max=au.duration;tm.textContent='0:00 / '+f(au.duration)});
+  au.addEventListener('timeupdate',()=>{sk.value=au.currentTime;tm.textContent=f(au.currentTime)+' / '+f(au.duration||30)});
+  sk.addEventListener('input',()=>{au.currentTime=sk.value});
+  // Rubrique active dans le menu
+  const links=[...document.querySelectorAll('.nav ul a')];
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){links.forEach(l=>l.setAttribute('aria-current',l.hash==='#'+e.target.id))}
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+  // Vidéos : lecture dans la page sur le site en ligne (YouTube intégré), lien YouTube sinon
+  // Passer à true une fois le site sur son propre nom de domaine : les vidéos se liront dans la page.
+  const LECTURE_INTEGREE=true;
+  const onWeb=LECTURE_INTEGREE&&/^https?:$/.test(location.protocol);
+  [['reelbtn','reel','ouZcCIUB2L0','Bande démo – Stella Cerezo'],['clipbtn','clip','19kX55jwmLE','Otra Vez – clip officiel']].forEach(([btn,box,id,title])=>{
+    document.getElementById(btn).addEventListener('click',e=>{
+      if(!onWeb)return; // fichier ouvert en local : YouTube refuse l'intégration, on ouvre YouTube
+      e.preventDefault();
+      if(typeof au!=='undefined'&&au)au.pause();
+      document.getElementById(box).innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" title="'+title+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    });
+  });
+</script>
+</body>
+</html>
