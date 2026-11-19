@@ -240,6 +240,48 @@
   .langlist em{font-style:normal;font-size:.9rem;opacity:.75;text-align:right}
   .langlist .bar{width:clamp(80px,12vw,140px);height:4px;border-radius:2px;background:rgba(247,230,232,.2);overflow:hidden;flex:none}
   .langlist .bar span{display:block;height:100%;background:var(--fleur)}
+  /* Galerie shooting : photo centrale mise en avant */
+  .carousel{position:relative}
+  .track{display:flex;align-items:center;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:1rem 50%;}
+  .track::-webkit-scrollbar{display:none}
+  .track .slide{flex:none;height:clamp(360px,64vh,620px);scroll-snap-align:center;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.2);
+    transform:scale(.8);opacity:.35;filter:saturate(.7);transition:transform .45s ease,opacity .45s ease,filter .45s ease;cursor:pointer}
+  .track .slide.on{transform:scale(1);opacity:1;filter:none;cursor:default;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .track .slide img{height:100%;width:100%;object-fit:cover;display:block;user-select:none}
+  .carr{position:absolute;top:calc(50% - 1.2rem);transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;background:var(--white);color:var(--cerise);font-size:2rem;line-height:1;cursor:pointer;z-index:2;box-shadow:0 2px 12px rgba(0,0,0,.25);transition:opacity .2s,transform .2s}
+  .carr:hover{transform:translateY(-50%) scale(1.07)}
+  .carr.prev{left:0}.carr.next{right:0}
+  .carr[disabled]{opacity:0;pointer-events:none}
+  .ccount{text-align:center;margin-top:.6rem;font-family:'Tenor Sans',var(--body);letter-spacing:.2em;font-size:.8rem;opacity:.8}
+  @media (max-width:760px){.track{gap:.5rem}.track .slide{height:56vh;max-height:480px;transform:scale(.86)}.track .slide.on{transform:scale(1)}.carr{width:42px;height:42px;font-size:1.6rem}.carr.prev{left:4px}.carr.next{right:4px}}
+  @media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}.track .slide{transition:none}}
+  /* CV */
+  .cvblock{display:flex;gap:1.25rem;align-items:flex-start;margin-top:2rem}
+  .cvthumb{padding:0;border:none;background:none;cursor:zoom-in;width:110px;flex:none;border-radius:4px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.35);transition:transform .2s}
+  .cvthumb:hover{transform:translateY(-3px)}
+  .cvthumb img{display:block;width:100%;height:auto}
+  .cvactions{display:flex;flex-direction:column;gap:.6rem;align-items:flex-start}
+  .cvtitle{font-family:'Tenor Sans',var(--body);letter-spacing:.25em;font-size:.8rem;opacity:.8}
+  .cvbtn{font-family:'Tenor Sans',var(--body);letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;padding:.65rem 1.1rem;border-radius:999px;border:1.5px solid var(--petale);background:transparent;color:var(--petale);cursor:pointer}
+  .cvbtn:hover{background:var(--petale);color:var(--cerise)}
+  .cvdl{position:relative}
+  .cvmenu{position:absolute;left:0;top:calc(100% + .4rem);background:var(--white);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.3);overflow:hidden;min-width:100%;z-index:5}
+  .cvmenu a{display:block;padding:.65rem 1.1rem;color:var(--cerise);text-decoration:none;font-weight:600;white-space:nowrap}
+  .cvmenu a:hover{background:var(--petale)}
+  .cvmodal{position:fixed;inset:0;z-index:100;background:rgba(20,4,8,.88);display:flex;flex-direction:column}
+  .cvmodal[hidden]{display:none}
+  .cvbar{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;gap:1rem}
+  .cvtabs{display:flex;gap:.4rem}
+  .cvtabs button{font-family:'Tenor Sans',var(--body);letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;padding:.5rem .9rem;border-radius:999px;border:1px solid rgba(247,230,232,.5);background:transparent;color:var(--petale);cursor:pointer}
+  .cvtabs button[aria-pressed="true"]{background:var(--petale);color:var(--cerise);border-color:var(--petale)}
+  .cvclose{width:44px;height:44px;border-radius:50%;border:none;background:var(--white);color:var(--cerise);font-size:1.8rem;line-height:1;cursor:pointer}
+  .cvscroll{flex:1;overflow:auto;padding:0 1rem 2rem;display:flex;justify-content:center}
+  .cvscroll img{width:min(860px,100%);height:auto;align-self:flex-start;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  body.noscroll{overflow:hidden}
+  @media (max-width:640px){.cvthumb{width:86px}}
+  .langcv{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:1rem;align-items:start}
+  .langcv .cvblock{margin-top:0}
+  @media (max-width:760px){.langcv{grid-template-columns:1fr;gap:1rem}}
 </style>
 <meta property="og:title" content="Stella Cerezo — Actrice">
 <meta property="og:description" content="Actrice, chanteuse, compositrice et modèle.">
@@ -328,13 +370,33 @@
             <li>Danse hip-hop, modern-jazz et contemporain (notions)</li>
             <li>Permis B</li>
           </ul>
-          <h3 class="sub">Langues</h3>
-          <ul class="langlist">
-            <li><span class="ln">Français</span><span class="lv"><em>maternel</em><span class="bar" role="img" aria-label="maternel"><span style="width:100%"></span></span></span></li>
-            <li><span class="ln">Espagnol</span><span class="lv"><em>courant</em><span class="bar" role="img" aria-label="courant"><span style="width:95%"></span></span></span></li>
-            <li><span class="ln">Anglais</span><span class="lv"><em>C1</em><span class="bar" role="img" aria-label="C1"><span style="width:90%"></span></span></span></li>
-            <li><span class="ln">Vietnamien</span><span class="lv"><em>notions</em><span class="bar" role="img" aria-label="notions"><span style="width:20%"></span></span></span></li>
-          </ul>
+        </div>
+      </div>
+      <div class="langcv">
+        <div>
+            <h3 class="sub">Langues</h3>
+            <ul class="langlist">
+              <li><span class="ln">Français</span><span class="lv"><em>maternel</em><span class="bar" role="img" aria-label="maternel"><span style="width:100%"></span></span></span></li>
+              <li><span class="ln">Espagnol</span><span class="lv"><em>courant</em><span class="bar" role="img" aria-label="courant"><span style="width:95%"></span></span></span></li>
+              <li><span class="ln">Anglais</span><span class="lv"><em>C1</em><span class="bar" role="img" aria-label="C1"><span style="width:90%"></span></span></span></li>
+              <li><span class="ln">Vietnamien</span><span class="lv"><em>notions</em><span class="bar" role="img" aria-label="notions"><span style="width:20%"></span></span></span></li>
+            </ul>
+        </div>
+        <div>
+          <h3 class="sub">CV</h3>
+            <div class="cvblock">
+              <button type="button" class="cvthumb" id="cvopen" aria-label="Consulter le CV en grand"><img src="img/cv-fr.jpg" alt="Aperçu du CV de Stella Cerezo" width="1240" height="1754" loading="lazy"></button>
+              <div class="cvactions">
+                <button type="button" class="cvbtn" id="cvview">Consulter le CV</button>
+                <div class="cvdl" id="cvdl">
+                  <button type="button" class="cvbtn" id="cvdlbtn" aria-expanded="false" aria-controls="cvmenu">Télécharger le CV</button>
+                  <div class="cvmenu" id="cvmenu" hidden>
+                    <a href="cv/CV_Stella_Cerezo_FR.pdf" download="CV_Stella_Cerezo_FR.pdf">Français</a>
+                    <a href="cv/Resume_Stella_Cerezo_EN.pdf" download="Resume_Stella_Cerezo_EN.pdf">English</a>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -417,26 +479,25 @@
         <div><dt>Yeux</dt><dd>Marron foncé</dd></div>
       </dl>
       <h3 class="sub">Shooting</h3>
-      <div class="shoot">
-        <div class="srow">
-          <figure style="--r:0.562"><img src="img/shoot-video.webp" alt="Stella Cerezo — Extrait vidéo du shooting : allongée sur un lit, menton dans la main" loading="lazy"></figure>
-          <figure style="--r:.95"><img src="img/s6.jpg" style="object-position:center 30%" alt="Stella Cerezo — Portrait dans un manteau de fourrure" loading="lazy"></figure>
-          <figure style="--r:0.668"><img src="img/s1.jpg" alt="Stella Cerezo — Assise au sol, tons sépia" loading="lazy"></figure>
-          <figure style="--r:1.503"><img src="img/s7.jpg" alt="Stella Cerezo — Allongée sur un lit, noir et blanc" loading="lazy"></figure>
+      <div class="carousel" role="region" aria-label="Galerie shooting">
+        <button class="carr prev" type="button" aria-label="Photo précédente">‹</button>
+        <div class="track" tabindex="0">
+          <figure class="slide" style="aspect-ratio:724/1086"><img src="img/s6.jpg" width="724" height="1086" alt="Stella Cerezo — Portrait dans un manteau de fourrure" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:560/996"><img src="img/shoot-video.webp" width="560" height="996" alt="Stella Cerezo — Extrait vidéo du shooting : allongée sur un lit, menton dans la main" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:735/1100"><img src="img/s1.jpg" width="735" height="1100" alt="Stella Cerezo — Assise au sol, tons sépia" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:900/599"><img src="img/s7.jpg" width="900" height="599" alt="Stella Cerezo — Allongée sur un lit, noir et blanc" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:779/1100"><img src="img/s2.jpg" width="779" height="1100" alt="Stella Cerezo — Profil sur fond de ciel" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:715/1000"><img src="img/s15.jpg" width="715" height="1000" alt="Stella Cerezo — Souriante, lumière de fin de journée" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:668/1000"><img src="img/s8.jpg" width="668" height="1000" alt="Stella Cerezo — De dos sur fond jaune" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:668/1000"><img src="img/s9.jpg" width="668" height="1000" alt="Stella Cerezo — Vue plongeante sur fond jaune, vinyles au sol" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:711/1000"><img src="img/s10.jpg" width="711" height="1000" alt="Stella Cerezo — Jambes levées, santiags, fond jaune" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:733/1100"><img src="img/s4.jpg" width="733" height="1100" alt="Stella Cerezo — Robe noire, main dans les cheveux" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:1000/695"><img src="img/s11.jpg" width="1000" height="695" alt="Stella Cerezo — Souriante, yeux fermés, lumière bleue" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:1000/635"><img src="img/s12.jpg" width="1000" height="635" alt="Stella Cerezo — Allongée, lumière bleue" loading="lazy" draggable="false"></figure>
+          <figure class="slide" style="aspect-ratio:1000/786"><img src="img/s13.jpg" width="1000" height="786" alt="Stella Cerezo — Allongée, lumière violette" loading="lazy" draggable="false"></figure>
         </div>
-        <div class="srow">
-          <figure style="--r:0.708"><img src="img/s2.jpg" alt="Stella Cerezo — Profil sur fond de ciel" loading="lazy"></figure>
-          <figure style="--r:0.715"><img src="img/s15.jpg" alt="Stella Cerezo — Souriante, lumière de fin de journée" loading="lazy"></figure>
-          <figure style="--r:0.668"><img src="img/s8.jpg" alt="Stella Cerezo — De dos sur fond jaune" loading="lazy"></figure>
-          <figure style="--r:0.668"><img src="img/s9.jpg" alt="Stella Cerezo — Vue plongeante sur fond jaune, vinyles au sol" loading="lazy"></figure>
-          <figure style="--r:0.711"><img src="img/s10.jpg" alt="Stella Cerezo — Jambes levées, santiags, fond jaune" loading="lazy"></figure>
-          <figure style="--r:0.666"><img src="img/s4.jpg" alt="Stella Cerezo — Robe noire, main dans les cheveux" loading="lazy"></figure>
-        </div>
-        <div class="srow keep">
-          <figure style="--r:1.439"><img src="img/s11.jpg" alt="Stella Cerezo — Souriante, yeux fermés, lumière bleue" loading="lazy"></figure>
-          <figure style="--r:1.575"><img src="img/s12.jpg" alt="Stella Cerezo — Allongée, lumière bleue" loading="lazy"></figure>
-          <figure style="--r:1.272"><img src="img/s13.jpg" alt="Stella Cerezo — Allongée, lumière violette" loading="lazy"></figure>
-        </div>
+        <button class="carr next" type="button" aria-label="Photo suivante">›</button>
+        <p class="ccount" aria-live="polite"><span id="cpos">1</span> / 13</p>
       </div>
     </div>
   </section>
@@ -469,16 +530,27 @@
       <dl>
         <div><dt>Email</dt><dd><a href="mailto:stellavyx@gmail.com">stellavyx@gmail.com</a></dd></div>
         <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/stella.cerezo/">@stella.cerezo</a></dd></div>
-        <div><dt>Basée en</dt><dd>Banlieue parisienne (94) · véhiculée</dd></div>
+        <div><dt>Basée en</dt><dd>Île-de-France · véhiculée</dd></div>
       </dl>
     </div>
     <div class="wrap"><footer>© 2026 Stella Cerezo</footer></div>
   </section>
 </main>
+  <div class="cvmodal" id="cvmodal" hidden role="dialog" aria-modal="true" aria-label="CV de Stella Cerezo">
+    <div class="cvbar">
+      <div class="cvtabs" role="group" aria-label="Langue du CV">
+        <button type="button" data-cv="fr" aria-pressed="true">Français</button>
+        <button type="button" data-cv="en" aria-pressed="false">English</button>
+      </div>
+      <button type="button" class="cvclose" id="cvclose" aria-label="Fermer">×</button>
+    </div>
+    <div class="cvscroll" id="cvscroll"><img id="cvimg" src="img/cv-fr.jpg" alt="CV de Stella Cerezo" width="1240" height="1754"></div>
+  </div>
+
 
 <script>
   // Traduction FR / ES / EN
-  const I18N={"Cinéma": {"es": "Cine", "en": "Film"}, "Musique": {"es": "Música", "en": "Music"}, "Modèle": {"es": "Modelo", "en": "Modelling"}, "Pub": {"es": "Publicidad", "en": "Ads"}, "Contact": {"es": "Contacto", "en": "Contact"}, "Actrice, chanteuse, compositrice et modèle. Joue en français, espagnol et anglais.": {"es": "Actriz, cantante, compositora y modelo. Actúa en francés, español e inglés.", "en": "Actress, singer, songwriter and model. Acts in French, Spanish and English."}, "Longs, courts métrages et séries. Bande démo ci-dessous.": {"es": "Largometrajes, cortometrajes y series. Videobook a continuación.", "en": "Feature films, shorts and series. Showreel below."}, "Rôle principal": {"es": "Papel principal", "en": "Lead role"}, "Série · sitcom": {"es": "Serie · sitcom", "en": "Series · sitcom"}, "Comédie satirique": {"es": "Comedia satírica", "en": "Satirical comedy"}, "De Louis Vignes · Studio Café Film": {"es": "De Louis Vignes · Studio Café Film", "en": "By Louis Vignes · Studio Café Film"}, "De Noé Deza Dja · Production France TV": {"es": "De Noé Deza Dja · Producción France TV", "en": "By Noé Deza Dja · Produced by France TV"}, "Court métrage": {"es": "Cortometraje", "en": "Short film"}, "D'Arezki Abdelaziz · Diffusé sur France TV": {"es": "De Arezki Abdelaziz · Emitido en France TV", "en": "By Arezki Abdelaziz · Aired on France TV"}, "Théâtre": {"es": "Teatro", "en": "Theatre"}, "Rôles de Juliette & Samson": {"es": "Papeles de Juliette y Samson", "en": "Roles: Juliette & Samson"}, "Mise en scène Karl Phillipe Kokou": {"es": "Dirección: Karl Phillipe Kokou", "en": "Directed by Karl Phillipe Kokou"}, "Formation": {"es": "Formación", "en": "Training"}, "— Conservatoire à rayonnement régional": {"es": "— Conservatorio regional", "en": "— Regional conservatory"}, "— coaching Anissa Allali": {"es": "— coaching con Anissa Allali", "en": "— coaching with Anissa Allali"}, "— coaching Leslie Tompson": {"es": "— coaching con Leslie Tompson", "en": "— coaching with Leslie Tompson"}, "BUAP, Puebla (Mexique)": {"es": "BUAP, Puebla (México)", "en": "BUAP, Puebla (Mexico)"}, "— cours de théâtre": {"es": "— clases de teatro", "en": "— acting classes"}, "Aptitudes": {"es": "Habilidades", "en": "Skills"}, "Piano — 8 ans de conservatoire, composition": {"es": "Piano — 8 años de conservatorio, composición", "en": "Piano — 8 years at the conservatory, composition"}, "Chant": {"es": "Canto", "en": "Singing"}, "Danse hip-hop, modern-jazz et contemporain (notions)": {"es": "Danza hip-hop, modern jazz y contemporánea (nociones)", "en": "Dance: hip-hop, modern jazz and contemporary (basics)"}, "Tissu aérien (notions)": {"es": "Telas aéreas (nociones)", "en": "Aerial silks (basics)"}, "Équitation — Galop 2": {"es": "Equitación — Galop 2", "en": "Horse riding — Galop 2"}, "Permis B": {"es": "Carné de conducir B", "en": "Driving licence (B)"}, "Langues": {"es": "Idiomas", "en": "Languages"}, "Chanteuse, pianiste et compositrice.": {"es": "Cantante, pianista y compositora.", "en": "Singer, pianist and songwriter."}, "Single · extrait": {"es": "Single · fragmento", "en": "Single · preview"}, "Voir le clip sur YouTube": {"es": "Ver el videoclip en YouTube", "en": "Watch the video on YouTube"}, "Clip officiel": {"es": "Videoclip oficial", "en": "Official music video"}, "Book photo.": {"es": "Book de fotos.", "en": "Portfolio."}, "Plein pied": {"es": "Cuerpo entero", "en": "Full length"}, "Mensurations": {"es": "Medidas", "en": "Measurements"}, "Taille": {"es": "Estatura", "en": "Height"}, "Poitrine": {"es": "Pecho", "en": "Bust"}, "Tour de taille": {"es": "Cintura", "en": "Waist"}, "Hanches": {"es": "Caderas", "en": "Hips"}, "Bassin": {"es": "Cadera baja", "en": "Low hips"}, "Pointure": {"es": "Talla de calzado (EU)", "en": "Shoe size (EU)"}, "Cheveux": {"es": "Cabello", "en": "Hair"}, "Yeux": {"es": "Ojos", "en": "Eyes"}, "Bruns": {"es": "Castaño", "en": "Brown"}, "Marron foncé": {"es": "Marrón oscuro", "en": "Dark brown"}, "Castings, collaborations, demandes presse : contact direct par email ou Instagram.": {"es": "Castings, colaboraciones, prensa: contacto directo por email o Instagram.", "en": "Castings, collaborations, press: direct contact by email or Instagram."}, "Basée en": {"es": "Ubicación", "en": "Based in"}, "Banlieue parisienne (94) · véhiculée": {"es": "Afueras de París (94) · con vehículo propio", "en": "Paris area (94) · has a car"}, "Shooting": {"es": "Sesiones de fotos", "en": "Photo shoots"}, "Voir la bande démo sur YouTube": {"es": "Ver el videobook en YouTube", "en": "Watch the showreel on YouTube"}, "Campagnes publicitaires.": {"es": "Campañas publicitarias.", "en": "Advertising campaigns."}, "Français": {"es": "Francés", "en": "French"}, "Espagnol": {"es": "Español", "en": "Spanish"}, "Anglais": {"es": "Inglés", "en": "English"}, "Vietnamien": {"es": "Vietnamita", "en": "Vietnamese"}, "maternel": {"es": "nativo", "en": "native"}, "courant": {"es": "fluido", "en": "fluent"}, "notions": {"es": "nociones", "en": "basics"}};
+  const I18N={"Cinéma": {"es": "Cine", "en": "Film"}, "Musique": {"es": "Música", "en": "Music"}, "Modèle": {"es": "Modelo", "en": "Modelling"}, "Pub": {"es": "Publicidad", "en": "Ads"}, "Contact": {"es": "Contacto", "en": "Contact"}, "Actrice, chanteuse, compositrice et modèle. Joue en français, espagnol et anglais.": {"es": "Actriz, cantante, compositora y modelo. Actúa en francés, español e inglés.", "en": "Actress, singer, songwriter and model. Acts in French, Spanish and English."}, "Longs, courts métrages et séries. Bande démo ci-dessous.": {"es": "Largometrajes, cortometrajes y series. Videobook a continuación.", "en": "Feature films, shorts and series. Showreel below."}, "Rôle principal": {"es": "Papel principal", "en": "Lead role"}, "Série · sitcom": {"es": "Serie · sitcom", "en": "Series · sitcom"}, "Comédie satirique": {"es": "Comedia satírica", "en": "Satirical comedy"}, "De Louis Vignes · Studio Café Film": {"es": "De Louis Vignes · Studio Café Film", "en": "By Louis Vignes · Studio Café Film"}, "De Noé Deza Dja · Production France TV": {"es": "De Noé Deza Dja · Producción France TV", "en": "By Noé Deza Dja · Produced by France TV"}, "Court métrage": {"es": "Cortometraje", "en": "Short film"}, "D'Arezki Abdelaziz · Diffusé sur France TV": {"es": "De Arezki Abdelaziz · Emitido en France TV", "en": "By Arezki Abdelaziz · Aired on France TV"}, "Théâtre": {"es": "Teatro", "en": "Theatre"}, "Rôles de Juliette & Samson": {"es": "Papeles de Juliette y Samson", "en": "Roles: Juliette & Samson"}, "Mise en scène Karl Phillipe Kokou": {"es": "Dirección: Karl Phillipe Kokou", "en": "Directed by Karl Phillipe Kokou"}, "Formation": {"es": "Formación", "en": "Training"}, "— Conservatoire à rayonnement régional": {"es": "— Conservatorio regional", "en": "— Regional conservatory"}, "— coaching Anissa Allali": {"es": "— coaching con Anissa Allali", "en": "— coaching with Anissa Allali"}, "— coaching Leslie Tompson": {"es": "— coaching con Leslie Tompson", "en": "— coaching with Leslie Tompson"}, "BUAP, Puebla (Mexique)": {"es": "BUAP, Puebla (México)", "en": "BUAP, Puebla (Mexico)"}, "— cours de théâtre": {"es": "— clases de teatro", "en": "— acting classes"}, "Aptitudes": {"es": "Habilidades", "en": "Skills"}, "Piano — 8 ans de conservatoire, composition": {"es": "Piano — 8 años de conservatorio, composición", "en": "Piano — 8 years at the conservatory, composition"}, "Chant": {"es": "Canto", "en": "Singing"}, "Danse hip-hop, modern-jazz et contemporain (notions)": {"es": "Danza hip-hop, modern jazz y contemporánea (nociones)", "en": "Dance: hip-hop, modern jazz and contemporary (basics)"}, "Tissu aérien (notions)": {"es": "Telas aéreas (nociones)", "en": "Aerial silks (basics)"}, "Équitation — Galop 2": {"es": "Equitación — Galop 2", "en": "Horse riding — Galop 2"}, "Permis B": {"es": "Carné de conducir B", "en": "Driving licence (B)"}, "Langues": {"es": "Idiomas", "en": "Languages"}, "Chanteuse, pianiste et compositrice.": {"es": "Cantante, pianista y compositora.", "en": "Singer, pianist and songwriter."}, "Single · extrait": {"es": "Single · fragmento", "en": "Single · preview"}, "Voir le clip sur YouTube": {"es": "Ver el videoclip en YouTube", "en": "Watch the video on YouTube"}, "Clip officiel": {"es": "Videoclip oficial", "en": "Official music video"}, "Book photo.": {"es": "Book de fotos.", "en": "Portfolio."}, "Plein pied": {"es": "Cuerpo entero", "en": "Full length"}, "Mensurations": {"es": "Medidas", "en": "Measurements"}, "Taille": {"es": "Estatura", "en": "Height"}, "Poitrine": {"es": "Pecho", "en": "Bust"}, "Tour de taille": {"es": "Cintura", "en": "Waist"}, "Hanches": {"es": "Caderas", "en": "Hips"}, "Bassin": {"es": "Cadera baja", "en": "Low hips"}, "Pointure": {"es": "Talla de calzado (EU)", "en": "Shoe size (EU)"}, "Cheveux": {"es": "Cabello", "en": "Hair"}, "Yeux": {"es": "Ojos", "en": "Eyes"}, "Bruns": {"es": "Castaño", "en": "Brown"}, "Marron foncé": {"es": "Marrón oscuro", "en": "Dark brown"}, "Castings, collaborations, demandes presse : contact direct par email ou Instagram.": {"es": "Castings, colaboraciones, prensa: contacto directo por email o Instagram.", "en": "Castings, collaborations, press: direct contact by email or Instagram."}, "Basée en": {"es": "Ubicación", "en": "Based in"}, "Shooting": {"es": "Sesiones de fotos", "en": "Photo shoots"}, "Voir la bande démo sur YouTube": {"es": "Ver el videobook en YouTube", "en": "Watch the showreel on YouTube"}, "Campagnes publicitaires.": {"es": "Campañas publicitarias.", "en": "Advertising campaigns."}, "Français": {"es": "Francés", "en": "French"}, "Espagnol": {"es": "Español", "en": "Spanish"}, "Anglais": {"es": "Inglés", "en": "English"}, "Vietnamien": {"es": "Vietnamita", "en": "Vietnamese"}, "maternel": {"es": "nativo", "en": "native"}, "courant": {"es": "fluido", "en": "fluent"}, "notions": {"es": "nociones", "en": "basics"}, "Île-de-France · véhiculée": {"es": "Île-de-France (región de París) · con vehículo propio", "en": "Île-de-France (Paris region) · has a car"}, "Consulter le CV": {"es": "Ver el CV", "en": "View résumé"}, "Télécharger le CV": {"es": "Descargar el CV", "en": "Download résumé"}};
   const nodes=[];(function walk(n){for(const c of n.childNodes){if(c.nodeType===3){const k=c.nodeValue.trim();if(I18N[k])nodes.push([c,c.nodeValue,k]);}else if(c.nodeType===1&&!/SCRIPT|STYLE/.test(c.tagName))walk(c);}})(document.body);
   function setLang(l){
     nodes.forEach(([n,orig,k])=>{n.nodeValue=l==='fr'?orig:orig.replace(k,I18N[k][l]);});
@@ -512,6 +584,8 @@
   // Vidéos : lecture dans la page sur le site en ligne (YouTube intégré), lien YouTube sinon
   // Passer à true une fois le site sur son propre nom de domaine : les vidéos se liront dans la page.
   const LECTURE_INTEGREE=true;
+  const CV_DOWNLOAD="link"; // "link" sur GitHub
+  const CV_FR="img/cv-fr.jpg", CV_EN="img/cv-en.jpg";
   const onWeb=LECTURE_INTEGREE&&/^https?:$/.test(location.protocol);
   [['reelbtn','reel','ouZcCIUB2L0','Bande démo – Stella Cerezo'],['clipbtn','clip','19kX55jwmLE','Otra Vez – clip officiel']].forEach(([btn,box,id,title])=>{
     document.getElementById(btn).addEventListener('click',e=>{
@@ -521,6 +595,45 @@
       document.getElementById(box).innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" title="'+title+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
     });
   });
+  // Galerie shooting : photo centrale mise en avant
+  (()=>{const tr=document.querySelector('.carousel .track');if(!tr)return;
+    const sl=[...tr.children],pv=document.querySelector('.carr.prev'),nx=document.querySelector('.carr.next'),pos=document.getElementById('cpos');
+    const cur=()=>{const c=tr.scrollLeft+tr.clientWidth/2;let i=0,b=1e9;sl.forEach((s,k)=>{const d=Math.abs(s.offsetLeft+s.offsetWidth/2-c);if(d<b){b=d;i=k}});return i};
+    const to=i=>{i=Math.max(0,Math.min(sl.length-1,i));const s=sl[i];tr.scrollTo({left:s.offsetLeft+s.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})};
+    const upd=()=>{const i=cur();sl.forEach((s,k)=>s.classList.toggle('on',k===i));pos.textContent=i+1;pv.disabled=i===0;nx.disabled=i===sl.length-1};
+    pv.addEventListener('click',()=>to(cur()-1));nx.addEventListener('click',()=>to(cur()+1));
+    sl.forEach((s,k)=>s.addEventListener('click',()=>{if(!s.classList.contains('on'))to(k)}));
+    tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();to(cur()+1)}if(e.key==='ArrowLeft'){e.preventDefault();to(cur()-1)}});
+    tr.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+    addEventListener('resize',upd);
+    const init=()=>{const b=tr.style.scrollBehavior;tr.style.scrollBehavior='auto';const s=sl[0];tr.scrollLeft=s.offsetLeft+s.offsetWidth/2-tr.clientWidth/2;tr.style.scrollBehavior=b;upd()};
+    init();addEventListener('load',init);
+  })();
+  // CV : consultation en grand + téléchargement FR / EN
+  (()=>{const m=document.getElementById('cvmodal');if(!m)return;
+    const img=document.getElementById('cvimg');
+    let last=null;
+    const setcv=l=>{img.src=l==='en'?CV_EN:CV_FR;document.querySelectorAll('[data-cv]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.cv===l))};
+    const open=()=>{last=document.activeElement;setcv(document.documentElement.lang==='en'?'en':'fr');m.hidden=false;document.body.classList.add('noscroll');document.getElementById('cvclose').focus()};
+    const close=()=>{m.hidden=true;document.body.classList.remove('noscroll');document.getElementById('cvscroll').scrollTop=0;if(last)last.focus()};
+    document.getElementById('cvopen').addEventListener('click',open);
+    document.getElementById('cvview').addEventListener('click',open);
+    document.getElementById('cvclose').addEventListener('click',close);
+    m.addEventListener('click',e=>{if(e.target===m||e.target.id==='cvscroll')close()});
+    document.querySelectorAll('[data-cv]').forEach(b=>b.addEventListener('click',()=>setcv(b.dataset.cv)));
+    addEventListener('keydown',e=>{if(e.key==='Escape'){if(!m.hidden)close();menu.hidden=true;dlb.setAttribute('aria-expanded','false')}});
+    const dlb=document.getElementById('cvdlbtn'),menu=document.getElementById('cvmenu');
+    if(CV_DOWNLOAD==='claude'){
+      let dls=null;const box=document.getElementById('cvdl');box.style.display='none';
+      (window.claude&&claude.use?claude.use('downloads'):Promise.resolve(null)).then(d=>{dls=d;if(d)box.style.display=''; else box.remove()}).catch(()=>box.remove());
+      menu.querySelectorAll('a').forEach(l=>l.addEventListener('click',async e=>{e.preventDefault();if(!dls)return;
+        try{const r=await fetch(l.getAttribute('href'));const blob=await r.blob();await dls.save({filename:l.getAttribute('download'),data:blob})}catch(err){}
+      }));
+    }
+    dlb.addEventListener('click',e=>{e.stopPropagation();menu.hidden=!menu.hidden;dlb.setAttribute('aria-expanded',String(!menu.hidden))});
+    addEventListener('click',e=>{if(!e.target.closest('#cvdl')){menu.hidden=true;dlb.setAttribute('aria-expanded','false')}});
+    menu.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>setTimeout(()=>{menu.hidden=true;dlb.setAttribute('aria-expanded','false')},50)));
+  })();
 </script>
 </body>
 </html>
